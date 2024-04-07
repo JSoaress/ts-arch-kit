@@ -13,7 +13,7 @@ export abstract class UnitOfWork<T = unknown> {
 
     abstract rollback(): Promise<void>;
 
-    protected abstract dispose(): Promise<void>;
+    abstract dispose(): Promise<void>;
 
     abstract execute<TResponse>(callback: () => Promise<TResponse>): Promise<TResponse>;
 
