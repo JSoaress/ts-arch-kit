@@ -1,6 +1,6 @@
-import { HTTPRequest, HttpMethods } from "./http";
+import { HTTPRequest, HTTPResponse, HttpMethods } from "./http";
 
 export interface IHttpServer {
-    on(method: HttpMethods, url: string, callback: (req: HTTPRequest) => Promise<unknown>): void;
+    register(method: HttpMethods, url: string, callback: <T = unknown>(req: HTTPRequest) => Promise<HTTPResponse<T>>): void;
     listen(port: number): void;
 }

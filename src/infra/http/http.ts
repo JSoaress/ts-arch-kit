@@ -1,4 +1,4 @@
-import { HTTP_CODES } from "./http-codes";
+/* eslint-disable @typescript-eslint/no-explicit-any */
 
 export type HttpMethods = "get" | "post" | "put" | "patch" | "delete" | "head" | "options";
 
@@ -9,13 +9,13 @@ type HTTPHeaders = {
 export type HTTPRequest = {
     params: Record<string, unknown>;
     query: Record<string, unknown>;
-    body: Record<string, unknown>;
+    body: any;
     headers: HTTPHeaders;
 };
 
-export type HTTPResponse<TResponse> = {
-    statusCode: HTTP_CODES | number;
+export type HTTPResponse<TResponse = any> = {
+    statusCode: number;
     message?: string;
-    body?: TResponse;
+    output?: TResponse;
     headers?: HTTPHeaders;
 };
