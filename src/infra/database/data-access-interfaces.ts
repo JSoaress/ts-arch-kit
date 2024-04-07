@@ -2,6 +2,23 @@ import { UnitOfWork } from "./UnitOfWork";
 
 export type Where = Record<string, unknown>;
 
+export type FILTER_OPERATOR =
+    | "exact"
+    | "iexact"
+    | "exclude"
+    | "like"
+    | "ilike"
+    | "startWith"
+    | "endWith"
+    | "lt"
+    | "lte"
+    | "gt"
+    | "gte"
+    | "range"
+    | "in"
+    | "notIn"
+    | "isNull";
+
 export type PaginationParams = {
     limit: number;
     offset: number;

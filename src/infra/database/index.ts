@@ -6,6 +6,7 @@ export {
     QueryOptionsWithoutPagination,
     SortParams,
     Where,
+    FILTER_OPERATOR,
     ISetUnitOfWork,
 } from "./data-access-interfaces";
 export * from "./UnitOfWork";
