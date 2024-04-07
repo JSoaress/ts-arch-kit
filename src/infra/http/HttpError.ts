@@ -1,9 +1,17 @@
 import { BasicError } from "../../common";
-import { HTTP_CODES } from "./http-codes";
+import { HttpReasons, HttpStatusCodes } from "./HttpStatusCodes";
 
 export class HttpError extends BasicError {
-    constructor(readonly statusCode: HTTP_CODES, readonly error: BasicError) {
+    constructor(private httpReason: HttpReasons, readonly error: BasicError) {
         super(error.message, true);
+    }
+
+    getStatusCode() {
+        return HttpStatusCodes.getStatusCode(this.httpReason);
+    }
+
+    getReasonPhrase() {
+        return HttpStatusCodes.getReasonPhrase(this.httpReason);
     }
 
     toJSON(): Record<string, unknown> {
