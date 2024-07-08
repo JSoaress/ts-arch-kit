@@ -1,25 +1,60 @@
-import { ReasonPhrases, StatusCodes } from "http-status-codes";
-
-export type HttpReasons = keyof typeof StatusCodes;
-
-type HttpStatus = {
-    code: number;
-    phrase: string;
-};
-
-export class HttpStatusCodes {
-    static getStatusCode(reason: HttpReasons): number {
-        return StatusCodes[reason];
-    }
-
-    static getReasonPhrase(reason: HttpReasons): string {
-        return ReasonPhrases[reason];
-    }
-
-    static getStatus(reason: HttpReasons): HttpStatus {
-        return {
-            code: StatusCodes[reason],
-            phrase: ReasonPhrases[reason],
-        };
-    }
+export enum HttpStatusCodes {
+    StatusContinue = 100,
+    StatusSwitchingProtocols = 101,
+    StatusProcessing = 102,
+    StatusEarlyHints = 103,
+    StatusOk = 200,
+    StatusCreated = 201,
+    StatusAccepted = 202,
+    StatusNonAuthoritativeInformation = 203,
+    StatusNoContent = 204,
+    StatusResetContent = 205,
+    StatusPartialContent = 206,
+    StatusMultiStatus = 207,
+    StatusMultipleChoices = 300,
+    StatusMovedPermanently = 301,
+    StatusMovedTemporarily = 302,
+    StatusSeeOther = 303,
+    StatusNotModified = 304,
+    StatusUseProxy = 305,
+    StatusTemporaryRedirect = 307,
+    StatusPermanentRedirect = 308,
+    StatusBadRequest = 400,
+    StatusUnauthorized = 401,
+    StatusPaymentRequired = 402,
+    StatusForbidden = 403,
+    StatusNotFound = 404,
+    StatusMethodNotAllowed = 405,
+    StatusNotAcceptable = 406,
+    StatusProxyAuthenticationRequired = 407,
+    StatusRequestTimeout = 408,
+    StatusConflict = 409,
+    StatusGone = 410,
+    StatusLengthRequired = 411,
+    StatusPreconditionFailed = 412,
+    StatusRequestTooLong = 413,
+    StatusRequestUriTooLong = 414,
+    StatusUnsupportedMediaType = 415,
+    StatusRequestedRangeNotSatisfiable = 416,
+    StatusExpectationFailed = 417,
+    StatusImATeapot = 418,
+    StatusInsufficientSpaceOnResource = 419,
+    StatusMethodFailure = 420,
+    StatusMisdirectedRequest = 421,
+    StatusUnprocessableEntity = 422,
+    StatusLocked = 423,
+    StatusFailedDependency = 424,
+    StatusUpgradeRequired = 426,
+    StatusPreconditionRequired = 428,
+    StatusTooManyRequests = 429,
+    StatusRequestHeaderFieldsTooLarge = 431,
+    StatusUnavailableForLegalReasons = 451,
+    StatusInternalServerError = 500,
+    StatusNotImplemented = 501,
+    StatusBadGateway = 502,
+    StatusServiceUnavailable = 503,
+    StatusGatewayTimeout = 504,
+    StatusHttpVersionNotSupported = 505,
+    StatusInsufficientStorage = 507,
+    StatusNetworkAuthenticationRequired = 511,
 }
