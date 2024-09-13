@@ -6,7 +6,7 @@ export type EntityProps = {
     id?: UniqueEntityID;
 };
 
-export type ToJSON<E> = Partial<E>;
+type ToJSON<T> = Partial<T> | Record<string, unknown>;
 
 export abstract class Entity<TEntity extends EntityProps> {
     private _dirtyProperties: string[] = [];
@@ -66,7 +66,7 @@ export abstract class Entity<TEntity extends EntityProps> {
         return this._id.equals(entity._id);
     }
 
-    toJson(): ToJSON<TEntity> {
+    toJSON(): ToJSON<TEntity> {
         return { ...this.props };
     }
 }
