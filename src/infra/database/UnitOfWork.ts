@@ -17,5 +17,5 @@ export abstract class UnitOfWork<T = unknown> {
 
     abstract execute<TResponse>(callback: () => Promise<TResponse>): Promise<TResponse>;
 
-    abstract getTransaction(): T | null;
+    abstract getTransaction(): T;
 }
