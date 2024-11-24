@@ -11,11 +11,15 @@
     ],
     "scripts": {
         "build": "tsc --build",
-        "husky:prepare": "husky install"
+        "husky:prepare": "husky install",
+        "version:patch": "npm version patch --no-git-tag-version",
+        "version:minor": "npm version minor --no-git-tag-version",
+        "version:major": "npm version major --no-git-tag-version"
     },
     "devDependencies": {
         "@commitlint/cli": "^17.6.1",
         "@commitlint/config-conventional": "^17.6.1",
+        "@types/chance": "^1.1.6",
         "@types/express": "^4.17.19",
         "@typescript-eslint/eslint-plugin": "^5.26.0",
         "@typescript-eslint/parser": "^5.26.0",
@@ -37,5 +41,8 @@
         "commitizen": {
             "path": "./node_modules/cz-conventional-changelog"
         }
+    },
+    "dependencies": {
+        "chance": "^1.1.12"
     }
 }
