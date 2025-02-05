@@ -1,10 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
+import { Server } from "http";
 
-export type HttpMethods = "get" | "post" | "put" | "patch" | "delete" | "head" | "options";
-
-type HTTPHeaders = {
-    [key: string]: string | string[] | undefined;
-};
+import { HTTPHeaders, HttpMethods } from "../http";
 
 export type HTTPRequest = {
     params: Record<string, unknown>;
@@ -19,3 +16,9 @@ export type HTTPResponse<TResponse = any> = {
     output?: TResponse;
     headers?: HTTPHeaders;
 };
+
+export interface IHttpServer {
+    register(method: HttpMethods, url: string, callback: <T = unknown>(req: HTTPRequest) => Promise<HTTPResponse<T>>): void;
+    listen(port: number, callback?: () => Promise<void> | void): void;
+    getServer(): Server;
+}
