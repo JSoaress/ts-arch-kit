@@ -3,7 +3,7 @@ import { Chance } from "chance";
 
 export type PropOrFactory<T> = T | ((index: number) => T);
 
-export abstract class BaseFakeBuilder<TBuild = any> {
+export abstract class ModelFactory<TBuild = any> {
     protected countObjs: number;
     protected chance: Chance.Chance;
 
