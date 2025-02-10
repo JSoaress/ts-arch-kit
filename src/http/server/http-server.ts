@@ -18,7 +18,7 @@ export type HTTPResponse<TResponse = any> = {
 };
 
 export interface IHttpServer {
-    register(method: HttpMethods, url: string, callback: <T = unknown>(req: HTTPRequest) => Promise<HTTPResponse<T>>): void;
+    register(method: HttpMethods, url: string, callback: <T = any>(req: HTTPRequest) => Promise<HTTPResponse<T>>): void;
     listen(port: number, callback?: () => Promise<void> | void): void;
     getServer(): Server;
 }
