@@ -1,7 +1,6 @@
 import { PrimaryKey } from "../../models";
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-export abstract class DeleteUseCase<TModel, TInput extends { id: PrimaryKey }> {
-    abstract delete(input: TInput): Promise<void>;
+export abstract class DeleteUseCase<TInput extends { id: PrimaryKey }, TOutput = void> {
+    abstract delete(input: TInput): Promise<TOutput>;
     protected abstract applyFiltersDelete(input: TInput): Record<string, unknown>;
 }

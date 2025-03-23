@@ -9,6 +9,8 @@ export abstract class CRUD<
     TPreCreateResult = any,
     TInputFetch extends { queryOptions?: QueryOptions } = any,
     TInputMutation extends { id: PrimaryKey } = any,
+    TOutputDelete = void,
+    TOutputUpdate = any,
     TValidationResult = any,
     TPreUpdateResult = any,
     TPostUpdateResult = any,
@@ -20,7 +22,7 @@ export abstract class CRUD<
     abstract create(input: TInputCreate): Promise<TCreateResult>;
     protected abstract validateCreate(input: TInputCreate): Promise<TValidationResult>;
     protected abstract beforeCreate(validatedModel: TModel): Promise<TPreCreateResult>;
-    abstract update(input: TInputMutation): Promise<TModel>;
+    abstract update(input: TInputMutation): Promise<TOutputUpdate>;
     protected abstract applyFiltersUpdate(input: TInputMutation): Record<string, unknown>;
     protected abstract validateUpdate(original: TModel, input: TInputMutation): Promise<TValidationResult>;
     protected abstract preUpdate(
@@ -29,6 +31,6 @@ export abstract class CRUD<
         input: TInputMutation
     ): Promise<TPreUpdateResult>;
     protected abstract postUpdate(savedModel: TModel, originalModel: TModel): Promise<TPostUpdateResult>;
-    abstract delete(input: TInputMutation): Promise<void>;
+    abstract delete(input: TInputMutation): Promise<TOutputDelete>;
     protected abstract applyFiltersDelete(input: TInputMutation): Record<string, unknown>;
 }

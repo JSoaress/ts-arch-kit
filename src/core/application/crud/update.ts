@@ -5,9 +5,10 @@ export abstract class UpdateUseCase<
     TInput extends { id: PrimaryKey },
     TValidationResult,
     TPreUpdateResult,
-    TPostUpdateResult
+    TPostUpdateResult,
+    TOutput = TModel
 > {
-    abstract update(input: TInput): Promise<TModel>;
+    abstract update(input: TInput): Promise<TOutput>;
     protected abstract applyFiltersUpdate(input: TInput): Record<string, unknown>;
     protected abstract validateUpdate(original: TModel, input: TInput): Promise<TValidationResult>;
     protected abstract preUpdate(validatedModel: TModel, originalModel: TModel, input: TInput): Promise<TPreUpdateResult>;
