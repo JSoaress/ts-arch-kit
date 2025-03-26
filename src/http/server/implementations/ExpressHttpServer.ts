@@ -1,7 +1,7 @@
 import express from "express";
 import { Server } from "http";
 
-import { BasicError, ErrorHandler } from "../../../core/errors";
+import { BasicError } from "../../../core/errors";
 import { HttpMethods } from "../../http";
 import { HttpStatusCodes } from "../../http-status-codes";
 import { HTTPRequest, HTTPResponse, IHttpServer } from "../http-server";
@@ -11,7 +11,7 @@ export class ExpressHttpServer implements IHttpServer {
     protected app: express.Express;
 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    constructor(readonly baseUrl = "", readonly errorHandler?: ErrorHandler<any>) {
+    constructor(readonly baseUrl = "") {
         this.app = express();
         this.app.use(express.json());
     }
@@ -20,20 +20,15 @@ export class ExpressHttpServer implements IHttpServer {
         this.app[method](`${this.baseUrl}${url}`, async (req, res) => {
             try {
                 const response = await callback(req);
-                res.status(response.statusCode).json(response.output);
+                res.status(response.statusCode).send(response.output);
             } catch (error) {
-                if (this.errorHandler) {
-                    const err = await this.errorHandler.handleError(error as Error);
-                    res.status(err.statusCode).json(err);
-                } else {
-                    res.status(HttpStatusCodes.StatusInternalServerError).json(error);
-                }
+                res.status(HttpStatusCodes.INTERNAL_SERVER_ERROR).send(error);
             }
         });
     }
 
     listen(port: number, callback?: () => Promise<void> | void): void {
-        this.app.listen(port, callback);
+        this.server = this.app.listen(port, callback);
     }
 
     getServer(): Server {
