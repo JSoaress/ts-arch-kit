@@ -1,24 +1,25 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Server } from "http";
 
-import { HTTPHeaders, HttpMethods } from "../http";
+import { HttpHeaders, HttpMethods } from "../http";
 
-export type HTTPRequest = {
+export interface HttpRequest {
     params: Record<string, unknown>;
     query: Record<string, unknown>;
     body: any;
-    headers: HTTPHeaders;
-};
+    headers: HttpHeaders;
+    [key: string]: any;
+}
 
-export type HTTPResponse<TResponse = any> = {
+export interface HttpResponse<TResponse = any> {
     statusCode: number;
     message?: string;
-    output?: TResponse;
-    headers?: HTTPHeaders;
-};
+    body?: TResponse;
+    headers?: HttpHeaders;
+}
 
 export interface IHttpServer {
-    register(method: HttpMethods, url: string, callback: <T = any>(req: HTTPRequest) => Promise<HTTPResponse<T>>): void;
+    register(method: HttpMethods, url: string, callback: <T = any>(req: HttpRequest) => Promise<HttpResponse<T>>): void;
     listen(port: number, callback?: () => Promise<void> | void): Promise<void>;
     getServer(): Server;
 }

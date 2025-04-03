@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { HTTPRequest, HTTPResponse } from "./http-server";
+import { HttpRequest, HttpResponse } from "./http-server";
 
 export interface IHttpRoute<TResponse = any> {
-    handle(request: HTTPRequest): Promise<HTTPResponse<TResponse>>;
+    handle(request: HttpRequest): Promise<HttpResponse<TResponse>>;
 }

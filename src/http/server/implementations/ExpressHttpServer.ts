@@ -4,7 +4,7 @@ import { Server } from "http";
 import { BasicError } from "../../../core/errors";
 import { HttpMethods } from "../../http";
 import { HttpStatusCodes } from "../../http-status-codes";
-import { HTTPRequest, HTTPResponse, IHttpServer } from "../http-server";
+import { HttpRequest, HttpResponse, IHttpServer } from "../http-server";
 
 export class ExpressHttpServer implements IHttpServer {
     private server: Server | null = null;
@@ -16,11 +16,11 @@ export class ExpressHttpServer implements IHttpServer {
         this.app.use(express.json());
     }
 
-    register(method: HttpMethods, url: string, callback: <T = unknown>(req: HTTPRequest) => Promise<HTTPResponse<T>>): void {
+    register(method: HttpMethods, url: string, callback: <T = unknown>(req: HttpRequest) => Promise<HttpResponse<T>>): void {
         this.app[method](`${this.baseUrl}${url}`, async (req, res) => {
             try {
                 const response = await callback(req);
-                res.status(response.statusCode).send(response.output);
+                res.status(response.statusCode).send(response.body);
             } catch (error) {
                 res.status(HttpStatusCodes.INTERNAL_SERVER_ERROR).send(error);
             }
