@@ -27,7 +27,7 @@ export class ExpressHttpServer implements IHttpServer {
         });
     }
 
-    listen(port: number, callback?: () => Promise<void> | void): void {
+    async listen(port: number, callback?: () => Promise<void> | void): Promise<void> {
         this.server = this.app.listen(port, callback);
     }
 
