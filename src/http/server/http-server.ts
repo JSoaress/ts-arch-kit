@@ -3,18 +3,18 @@ import { Server } from "http";
 
 import { HttpHeaders, HttpMethods } from "../http";
 
-export interface HttpRequest {
-    params: Record<string, unknown>;
-    query: Record<string, unknown>;
-    body: any;
+export interface HttpRequest<TBody = any> {
+    params: Record<string, string>;
+    query: Record<string, string>;
+    body: TBody;
     headers: HttpHeaders;
     [key: string]: any;
 }
 
-export interface HttpResponse<TResponse = any> {
+export interface HttpResponse<TBody = any> {
     statusCode: number;
     message?: string;
-    body?: TResponse;
+    body?: TBody;
     headers?: HttpHeaders;
 }
 
