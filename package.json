@@ -1,6 +1,6 @@
 {
     "name": "ts-arch-kit",
-    "version": "2.3.0",
+    "version": "2.4.0",
     "main": "dist/index.js",
     "types": "dist/index.d.ts",
     "repository": "git@github.com:JSoaress/ts-arch-kit.git",
@@ -41,9 +41,7 @@
     },
     "peerDependencies": {
         "@types/chance": "^1.1.6",
-        "@types/express": "^5.0.0",
-        "chance": "^1.1.12",
-        "express-async-errors": "^3.1.1"
+        "chance": "^1.1.12"
     },
     "config": {
         "commitizen": {
