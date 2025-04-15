@@ -88,6 +88,22 @@ export abstract class AbstractModel<Props extends AbstractModelProps> {
     }
 
     /**
+     * Returns the value of a given property from the entity's props.
+     *
+     * This method provides typed access to the internal props object,
+     * allowing safe and dynamic retrieval of domain data.
+     *
+     * @param key - The name of the property to retrieve.
+     * @returns The value associated with the given key.
+     *
+     * @example
+     * const code = user.get("id");
+     */
+    get<K extends keyof Props>(key: K): Props[K] {
+        return this.props[key];
+    }
+
+    /**
      * Checks if an object is an instance of `AbstractModel`.
      *
      * @template TEntity - Expected model type.
